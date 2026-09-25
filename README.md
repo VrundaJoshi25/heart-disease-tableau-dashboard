@@ -6,9 +6,9 @@
 
 Team project (team of 4), Data Visualization course, M.Sc. Data Science, Dhirubhai Ambani University (Autumn 2026).
 
-- Designed an interactive Tableau dashboard with slicers and filters for demographic and clinical attributes
-- Used color-encoded blood-pressure categories to highlight high-risk patient groups
-- Analyzed patterns, trends, and outliers across patient attributes to support exploratory findings
+- Analyzed a 1,025-patient clinical dataset (13 features) in Tableau
+- Built feature-importance, heatmap, and grouped-bar visualizations to test whether symptom and clinical patterns predict heart disease
+- Found that feature importance shifts substantially by gender, and that no single symptom or clinical test is sufficient alone: the data requires combined, interaction-aware analysis
 
 ## Dashboard
 
