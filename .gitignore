@@ -1,0 +1,8 @@
+# Tableau temp files
+.~*.twbr
+~$*
+*.tds.lock
+
+# OS
+.DS_Store
+Thumbs.db
