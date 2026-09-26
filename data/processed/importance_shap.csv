@@ -1,0 +1,14 @@
+feature,mean_abs_shap,direction
+cp,0.1126117331786615,higher raises risk
+ca,0.1006146484414425,higher lowers risk
+thal,0.08286975402478396,higher lowers risk
+oldpeak,0.06613256644128328,higher lowers risk
+exang,0.05753494072157359,higher lowers risk
+thalach,0.05526806784592231,higher raises risk
+slope,0.04262721605519004,higher raises risk
+age,0.04046109454618478,higher lowers risk
+sex,0.03694836900886901,higher lowers risk
+chol,0.024315307410797484,higher lowers risk
+trestbps,0.019763337876746803,higher lowers risk
+restecg,0.01194682664004136,higher raises risk
+fbs,0.0034177119653151177,higher raises risk

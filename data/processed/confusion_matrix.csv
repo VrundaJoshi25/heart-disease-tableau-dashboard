@@ -1,0 +1,3 @@
+actual,pred_no_disease,pred_disease
+actual_no_disease,100,0
+actual_disease,0,105
