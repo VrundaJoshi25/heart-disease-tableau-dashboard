@@ -1,7 +1,15 @@
-"""Load and validate the raw heart-disease dataset, then write the clean copy.
+"""Load, validate, and de-duplicate the raw heart-disease dataset.
 
-The raw file (data/raw/heart.csv) is never modified. All validation happens
-on a copy, which is saved to data/clean/heart_clean.csv.
+The raw file (data/raw/heart.csv) is never modified. All validation and
+cleaning happens on a copy, which is saved to data/clean/heart_clean.csv.
+
+The cleaning step that matters most: the raw file lists 1,025 rows but
+only 302 unique patients. In the version circulating on Kaggle, every
+patient record was duplicated roughly 3-4 times (one 8 times). Left in,
+those copies leak across any random train/test split (measured: 202 of
+205 test rows would have an identical twin in training), so evaluation
+would reward memorization instead of generalization. Exact duplicates
+are removed BEFORE the split, keeping the first occurrence per patient.
 """
 
 import pandas as pd
@@ -50,8 +58,19 @@ def validate(df):
 
 
 def build_clean(raw_path=DATA_RAW, out_path=DATA_CLEAN):
-    """Load, validate, and save the analysis-ready dataset (all 1,025 rows)."""
+    """Load, validate, drop exact duplicate patient records, and save.
+
+    1,025 raw rows become 302 unique patients. The removed 723 copies are
+    the difference between an honest evaluation and a memorization test.
+    """
     df = validate(load_raw(raw_path))
+    n_raw = len(df)
+    df = df.drop_duplicates(keep="first").reset_index(drop=True)
+    print(
+        f"Data-quality audit: {n_raw} raw rows, "
+        f"{n_raw - len(df)} exact duplicate records removed, "
+        f"{len(df)} unique patients kept"
+    )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(out_path, index=False)
     return df
